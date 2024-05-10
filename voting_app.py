@@ -30,4 +30,18 @@ class VotingApp(tk.Tk):
         else:
             self.generate_candidates()
 
-        
+        restart_button = tk.Button(self.main_frame, text="Restart", command=self.restart_voting, bg="#007ACC",
+                                   fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
+        restart_button.pack(pady=10)
+
+        back_button = tk.Button(self.main_frame, text="Back to Main Menu", command=self.back_to_menu, bg="#007ACC",
+                                fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
+        back_button.pack(pady=5)
+
+        self.scoreboard_button = tk.Button(self.main_frame, text="Show Scoreboard", command=self.show_scoreboard,
+                                           bg="#007ACC", fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
+        self.scoreboard_button.pack(pady=5)
+
+    def create_input_screen(self):
+        '''Create the input screen for entering Candidate names'''
+        label
