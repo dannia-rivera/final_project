@@ -13,5 +13,12 @@ class VoteSystem:
         '''Initialize VoteSystem with an empty dictionary.'''
         self.candidates = []
 
-    def vote(selfself, candidate_name: str):
+    def vote(self, candidate_name: str):
         '''Increment the vote count for the Candidate by their name'''
+        for candidate in self.candidates:
+            if candidate.name == candidate_name:
+                candidate.votes += 1
+                return
+    def calculate_winner(self): -> str:
+    '''Calculate the winner based on maximum votes, return the winners name'''
+    
