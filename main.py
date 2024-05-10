@@ -11,3 +11,9 @@ class MainScreen(tk.Tk):
 
         self.main_menu = None
 
+        self.main_frame = tk.Frame(self, bg"#F0F0F0")
+        self.main_frame.pack(expand=True, fill=tk.BOTH)
+
+        self.create_widgets()
+
+    def set_main_menu(self, main_menu):
