@@ -11,4 +11,7 @@ class Candidate:
 class VoteSystem:
     def __init__(self):
         '''Initialize VoteSystem with an empty dictionary.'''
-        
+        self.candidates = []
+
+    def vote(selfself, candidate_name: str):
+        '''Increment the vote count for the Candidate by their name'''
