@@ -12,3 +12,13 @@ class DataManager:
     def load_results(self) -> list:
         '''Loads the candidate results from the file'''
         candidates = []
+        try:
+            with open(self.filename,'r') as file:
+                for line in file:
+                    name, votes = line.strip().split(',')
+                    candidate = Candidate(name)
+                    candidate.votes = int(votes)
+                    candidates.append(candidate)
+        except FileNotFoundError:
+            pass
+        return candidates
