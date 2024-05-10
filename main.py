@@ -43,5 +43,13 @@ class MainScreen(tk.Tk):
     def random_names(self):
         '''Load candidate names from file and opeen the voting screen'''
         try:
-            with open('names.txt', 'r') as file:
-                
+            with open('names..txt', 'r') as file:
+                candidate_names = file.readlines()
+                candidate_names = [name.strip() for name in candidate_names]
+                self.withdraw()
+                app = VotingApp(input_mode=False, candidate_names=candidate_names, main_menu=self)
+                app.mainloop()
+        except FileNotFoundError:
+            messagebox.showerror("File Not Found", "The names..txt was not found")
+
+    def back_to_menu(self):
