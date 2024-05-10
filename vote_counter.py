@@ -21,4 +21,15 @@ class VoteSystem:
                 return
     def calculate_winner(self): -> str:
     '''Calculate the winner based on maximum votes, return the winners name'''
-    
+    if not self.candidates:
+        return 'No candidates'
+
+    max_votes = max(candidate.votes for candidate in self.candidates)
+    winners = [candidate.name for candidate in self.candidates if candidate.votes == max_votes]
+
+    if len(winners) == 1:
+        return winners[0]
+    else:
+        return ", ".join(winners)
+
+
