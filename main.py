@@ -36,3 +36,12 @@ class MainScreen(tk.Tk):
 
     def input_names(self):
         '''Hide the main menu window and open the input screen'''
+        self.withdraw()
+        app = VotingApp(input_mode=True, main_menu=self)
+        app.mainloop()
+
+    def random_names(self):
+        '''Load candidate names from file and opeen the voting screen'''
+        try:
+            with open('names.txt', 'r') as file:
+                
