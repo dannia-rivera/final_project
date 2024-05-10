@@ -44,4 +44,27 @@ class VotingApp(tk.Tk):
 
     def create_input_screen(self):
         '''Create the input screen for entering Candidate names'''
-        label
+        label = tk.Label(self.main_frame, text="Enter candidate names (separated by commas):", bg="#F0F0F0", font=("Helvetica", 10))
+        label.pack(pady=10)
+
+        self.entry = tk.Entry(self.main_frame, font=("Helvetica", 10))
+        self.entry.pack(pady=5)
+
+        submit_button = tk.Button(self.main_frame, text="Submit", command=self.submit_names, bg="#007ACC", fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
+        submit_button.pack(pady=5)
+
+    def submit_names(self):
+        '''Submit the entered candidate names'''
+        names = self.entry.get().split(',')
+        if not (2<= len(names) <=5):
+            messagebox.showerror("Error", "Please enter 2-5 names seperated by commas.")
+            return
+        for name in names:
+            if name in self,candidate_names:
+                messagebox.showerror("Error", "{name} has been used before. Try using a different name.")
+                return
+        self.canidate_names.extend(names)
+        self.generate_candidates()
+
+    def generate_candidates(self):
+        '''Generate the random candidates form the entered names.'''
