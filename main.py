@@ -53,3 +53,11 @@ class MainScreen(tk.Tk):
             messagebox.showerror("File Not Found", "The names..txt was not found")
 
     def back_to_menu(self):
+        '''Destroys the current window and shows the main menu window'''
+        self.destroy()
+        self.main_menu.deiconify()
+        self.main_menu.lift()
+
+if __name__ == "__main__":
+    app = MainScreen()
+    app.mainloop()
