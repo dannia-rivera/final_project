@@ -64,7 +64,7 @@ class VotingApp(tk.Tk):
                 messagebox.showerror("Error", "{name} has been used before. Try using a different name.")
                 return
         self.canidate_names.extend(names)
-        self.generate_candidates()
+        self.generate_candidates
 
     def generate_candidates(self):
         '''Generate the random candidates form the entered names.'''
@@ -93,3 +93,9 @@ class VotingApp(tk.Tk):
 
     def vote(self, candidate: Candidate):
         '''Vote for the selected candidate'''
+        messagebox.showinfo("Success", f'You have voted for {candidate.name}!')
+        candidate.vote()
+        self.previous_votes.append(candidate.name)
+
+    def restart_voting(self):
+        '''Restart the voting process'''
