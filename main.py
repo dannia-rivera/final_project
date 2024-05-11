@@ -1,4 +1,4 @@
-import tkinter
+import tkinter as tk
 from tkinter import messagebox
 from voting_app import VotingApp
 
@@ -11,7 +11,7 @@ class MainScreen(tk.Tk):
 
         self.main_menu = None
 
-        self.main_frame = tk.Frame(self, bg"#F0F0F0")
+        self.main_frame = tk.Frame(self, bg="#F0F0F0")
         self.main_frame.pack(expand=True, fill=tk.BOTH)
 
         self.create_widgets()
@@ -20,7 +20,7 @@ class MainScreen(tk.Tk):
         self.main_menu = main_menu
 
     def create_widgets(self):
-        label = tk.Lbael(self.main_frame, text="Welcome to the Voting System!", font=("Helvetica", 16))
+        label = tk.Label(self.main_frame, text="Welcome to the Voting System!", font=("Helvetica", 16))
         label.pack(pady=20)
 
         options_frame = tk.Frame(self.main_frame, bg="#F0F0F0")

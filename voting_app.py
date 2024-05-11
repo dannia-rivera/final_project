@@ -60,7 +60,7 @@ class VotingApp(tk.Tk):
             messagebox.showerror("Error", "Please enter 2-5 names seperated by commas.")
             return
         for name in names:
-            if name in self,candidate_names:
+            if name in self.candidate_names:
                 messagebox.showerror("Error", "{name} has been used before. Try using a different name.")
                 return
         self.canidate_names.extend(names)
@@ -88,8 +88,8 @@ class VotingApp(tk.Tk):
                 index = i*2 + j
                 if index < len(selected_names):
                     candidate = self.vote_system.candidates[index]
-                    button = tk.Button(row_frame, text=candidate.name, command=lambda c=candidate: self.vote(c), bg="#007ACC", fg="white", font="helvetica", 10, "bold"), relief=tk.FLAT)
-                    button.pack(side=tk.:EFT, padx=5, pady=5)
+                    button = tk.Button(row_frame, text=candidate.name, command=lambda c=candidate: self.vote(c), bg="#007ACC", fg="white", font=("helvetica", 10, "bold"), relief=tk.FLAT)
+                    button.pack(side=tk.LEFT, padx=5, pady=5)
 
     def vote(self, candidate: Candidate):
         '''Vote for the selected candidate'''
@@ -117,3 +117,20 @@ class VotingApp(tk.Tk):
         if not self.vote_system.candidates:
             messagebox.showinfo("Scoreboard", "No votes recorded yet")
             return
+
+        scoreboard_window = tk.Toplevel(self)
+        scoreboard_window.title("Scoreboard")
+        scoreboard_window.geometry("300x200")
+        scoreboard_window.configure(bg="#F0F0F0")
+
+        scoreboard_frame = tk.Frame(scoreboard_window, bg="#F0F0F0")
+        scoreboard_frame.pack(expand=True, fill=tk.BOTH)
+
+        for idx, candidate in enumerate(self.vote_system.candidates, 1):
+            label = tk.Label(scoreboard_frame, text=f"{idx}. {candidate.name}: {candidate.votes} votes", bg="#F0F0F0", font=("Helvetica", 10))
+            label.pack()
+
+
+if __name__ == "__main__":
+    app = VotingApp()
+    app.mainloop()
