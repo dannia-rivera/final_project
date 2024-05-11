@@ -3,7 +3,7 @@ from tkinter import messagebox
 import random
 from vote_counter import Candidate, VoteSystem
 
-def back_to_main_menu(root):
+def back_to_menu(root):
     '''Destroy the current window and show the main menu window'''
     root.destroy()
     root.main_menu.deiconify()
@@ -20,7 +20,7 @@ class VotingApp(tk.Tk):
         self.vote_system = VoteSystem()
         self.previous_votes = []
         self.candidate_names = candidate_names if candidate_names is not None else []
-        self.main_menu = main_menu  # Store a reference to the main menu window
+        self.main_menu = main_menu
 
         self.main_frame = tk.Frame(self, bg="#F0F0F0")
         self.main_frame.pack(expand=True, fill=tk.BOTH)
@@ -56,14 +56,14 @@ class VotingApp(tk.Tk):
     def submit_names(self):
         '''Submit the entered candidate names'''
         names = self.entry.get().split(',')
-        if not (2<= len(names) <=5):
+        if not (2 <= len(names) <= 5):
             messagebox.showerror("Error", "Please enter 2-5 names seperated by commas.")
             return
         for name in names:
             if name in self.candidate_names:
-                messagebox.showerror("Error", "{name} has been used before. Try using a different name.")
+                messagebox.showerror("Error", f"Sorry, '{name}' has been used before. Try using a different name.")
                 return
-        self.canidate_names.extend(names)
+        self.candidate_names.extend(names)
         self.generate_candidates
 
     def generate_candidates(self):
@@ -74,7 +74,7 @@ class VotingApp(tk.Tk):
 
         random.shuffle(self.candidate_names)
         num_names = random.randint(2, min(5, len(self.candidate_names)))
-        selected_names = self.cadidate_names[:num_names]
+        selected_names = self.candidate_names[:num_names]
 
         for name in selected_names:
             candidate = Candidate(name)
@@ -85,7 +85,7 @@ class VotingApp(tk.Tk):
             row_frame = tk.Frame(self.main_frame, bg="#F0F0F0")
             row_frame.pack(fill=tk.X)
             for j in range(2):
-                index = i*2 + j
+                index = i * 2 + j
                 if index < len(selected_names):
                     candidate = self.vote_system.candidates[index]
                     button = tk.Button(row_frame, text=candidate.name, command=lambda c=candidate: self.vote(c), bg="#007ACC", fg="white", font=("helvetica", 10, "bold"), relief=tk.FLAT)
