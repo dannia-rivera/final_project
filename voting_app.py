@@ -125,7 +125,7 @@ class VotingApp(tk.Tk):
         scoreboard_frame.pack(expand=True, fill=tk.BOTH)
 
         for idx, candidate in enumerate(self.vote_system.candidates, 1):
-            label = tk.Label(scoreboard_frame, text=f"{idx}. {candidate.name}: {candidate.votes} votes", bg="#F0F0F0", font=("Helvetica", 10))
+            label = tk.Label(scoreboard_frame, text=f"{idx}. {candidate.name}: {candidate.votes} vote(s)", bg="#F0F0F0", font=("Helvetica", 10))
             label.pack()
 
 
