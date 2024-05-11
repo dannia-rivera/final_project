@@ -110,3 +110,10 @@ class VotingApp(tk.Tk):
         import main
         app = main.MainScreen()
         app.mainloop()
+
+    def show_scoreboard(self):
+        '''Show the scoreboard'''
+
+        if not self.vote_system.candidates:
+            messagebox.showinfo("Scoreboard", "No votes recorded yet")
+            return
