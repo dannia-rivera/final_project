@@ -30,16 +30,13 @@ class VotingApp(tk.Tk):
         else:
             self.generate_candidates()
 
-        restart_button = tk.Button(self.main_frame, text="Restart", command=self.restart_voting, bg="#007ACC",
-                                   fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
+        restart_button = tk.Button(self.main_frame, text="Restart", command=self.restart_voting, bg="#007ACC", fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
         restart_button.pack(pady=10)
 
-        back_button = tk.Button(self.main_frame, text="Back to Main Menu", command=self.back_to_menu, bg="#007ACC",
-                                fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
+        back_button = tk.Button(self.main_frame, text="Back to Main Menu", command=self.back_to_menu, bg="#007ACC", fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
         back_button.pack(pady=5)
 
-        self.scoreboard_button = tk.Button(self.main_frame, text="Show Scoreboard", command=self.show_scoreboard,
-                                           bg="#007ACC", fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
+        self.scoreboard_button = tk.Button(self.main_frame, text="Show Scoreboard", command=self.show_scoreboard, bg="#007ACC", fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
         self.scoreboard_button.pack(pady=5)
 
     def create_input_screen(self):
@@ -57,19 +54,19 @@ class VotingApp(tk.Tk):
         '''Submit the entered candidate names'''
         names = self.entry.get().split(',')
         if not (2 <= len(names) <= 5):
-            messagebox.showerror("Error", "Please enter 2-5 names seperated by commas.")
+            messagebox.showerror("Error", "Please enter 2-5 names separated by commas.")
             return
         for name in names:
             if name in self.candidate_names:
                 messagebox.showerror("Error", f"Sorry, '{name}' has been used before. Try using a different name.")
                 return
         self.candidate_names.extend(names)
-        self.generate_candidates
+        self.generate_candidates()
 
     def generate_candidates(self):
-        '''Generate the random candidates form the entered names.'''
+        '''Generate the random candidates from the entered names.'''
         if not self.candidate_names:
-            messagebox.showerror("Error", "No candidate names available")
+            messagebox.showerror("Error", "No candidate names available.")
             return
 
         random.shuffle(self.candidate_names)
@@ -88,7 +85,8 @@ class VotingApp(tk.Tk):
                 index = i * 2 + j
                 if index < len(selected_names):
                     candidate = self.vote_system.candidates[index]
-                    button = tk.Button(row_frame, text=candidate.name, command=lambda c=candidate: self.vote(c), bg="#007ACC", fg="white", font=("helvetica", 10, "bold"), relief=tk.FLAT)
+                    button = tk.Button(row_frame, text=candidate.name, command=lambda c=candidate: self.vote(c),
+                                       bg="#007ACC", fg="white", font=("Helvetica", 10, "bold"), relief=tk.FLAT)
                     button.pack(side=tk.LEFT, padx=5, pady=5)
 
     def vote(self, candidate: Candidate):
