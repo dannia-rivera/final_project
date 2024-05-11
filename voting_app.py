@@ -99,3 +99,14 @@ class VotingApp(tk.Tk):
 
     def restart_voting(self):
         '''Restart the voting process'''
+        self.previous_votes = []
+        self.destroy()
+        app = VotingApp(input_mode=self.input_mode, candidate_names=self.candidate_names, main_menu=self.main_menu)
+        app.mainloop()
+
+    def back_to_menu(self):
+        '''Again would destroy current window and the main menu would pop up'''
+        self.destroy()
+        import main
+        app = main.MainScreen()
+        app.mainloop()
